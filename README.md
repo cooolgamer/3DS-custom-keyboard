@@ -10,4 +10,5 @@ Supported languages: All :)
 * Enjoy!
 
 ## Credits:
+* HMRT (HomeMenu Rebuild Tool) which allowed me to easily extract and edit the cia (should be decrypted): https://github.com/schrmh/HMRT
 * Thanks to Zukkunda for inspiring me of the blue color!
