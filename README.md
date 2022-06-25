@@ -11,8 +11,9 @@ Supported languages: All :)
 * Have 3 buttons instead of 4 (double click "symbols" to access to custom symbols)
 
 ## Screenshots:
-![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/qwerty.bmp)  
-![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/symbols.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/cell.bmp)   
+<details>
+  <div><a href="https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/qwerty.bmp"><img src="https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/qwerty.bmp" height="300px"></a> <a href="https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/symbols.bmp"><img src="https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/symbols.bmp" height="300px"></a> <a href="https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/cell.bmp"><img src="https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/cell.bmp" height="300px"></a>
+</details>
 
 ## How to install?
 * To install, go to the [releases page](https://github.com/cooolgamer/3DS-custom-keyboard/releases) then download the "Coool Custom Keyboard (your region).cia" file and install it with FBI!
@@ -27,7 +28,7 @@ Supported languages: All :)
 * On this menu, press next, and accept everything then wait for the update to finish,
 * If the update is correctly finished, press OK and the original keyboard is now back,
 * If you get a error, try again with a mobile wifi hotspot,
-* If you can't/still don't work, join my discord server https://discord.gg/V9FShC5q8h and I will help you (I tested it myself and it worked so it should work for you).
+* If you can't/still don't work, join my [discord server](https://discord.gg/V9FShC5q8h) and I will help you (I tested it myself and it worked so it should work for you).
 
 ## Warning: the keyboard isn't signed, meaning you SHOULD NOT uninstall your custom firmware. If you want to, follow the uninstallation tutorial.
 I am not responsible if you did, and have issues related to keyboard, you have been warned.
