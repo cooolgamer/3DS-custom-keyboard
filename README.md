@@ -15,14 +15,14 @@ Supported languages: All :)
 
 ## How to install?
 * To install, go to the [releases page](https://github.com/cooolgamer/3DS-custom-keyboard/releases) then download the "Coool Custom Keyboard (your region).cia" file and install it with your favorite CIA installer.
-* Enjoy!
+* Check the [WARNING](https://github.com/cooolgamer/3DS-custom-keyboard#warning-the-keyboard-isnt-signed-meaning-you-should-not-uninstall-your-custom-firmware) and of course, enjoy!
 
 ## How to uninstall?
 Please follow those steps carefully:
 
 - FIRST METHOD: reinstalling with system update.
    - Go to fbi, chose titles, wait for all titles to load, search for a red title named ```000400300000D002``` if you are EUR, or ```000400300000C802``` if you are USA.
-   - Select this title and chose "delete title and ticket", this will delete it but don't worry, we are going to reinstall it.
+   - Select this title and choose "delete title and ticket", this will delete it but don't worry, we are going to reinstall it.
    - Power off your console and launch recovery mode by holding L + R + A + dpad UP buttons and press power with all those buttons held.
    - Once you get a menu telling you to do a system update, say yes and accept everything.
    - Wait for the update to complete and it's done!
