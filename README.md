@@ -29,12 +29,12 @@ Please follow those steps carefully:
 
 If you're getting an error or plan to uninstall CFW:
 
-- You have 2 choices, "KEYBOARD ONLY" and "ENTIRE FIRMWARE".
-- Keyboard only is just reinstalling the clean keyboard to fix the keyboard,
-- entire firmware is reinstalling the entire clean firmware  which is strongly recommended if you plan removing CFW.
-- The steps not having "KEYBOARD ONLY" or "ENTIRE FIRMWARE" are for both methods, follow them
+- SECOND METHOD: You have 2 choices, "KEYBOARD ONLY" and "ENTIRE FIRMWARE":
+   - Keyboard only is just reinstalling the clean keyboard to fix the keyboard,
+   - Entire firmware is reinstalling the entire clean firmware  which is strongly recommended if you plan removing CFW.
+   - The steps not having "KEYBOARD ONLY" or "ENTIRE FIRMWARE" are for both methods, follow them.
 
-- SECOND METHOD: reinstalling with 3DNUS and godmode9.
+- Reinstalling with 3DNUS and godmode9 (Second method).
    - Take [this version of 3DNUS](https://github.com/DrHacknik/3DNUS/releases/tag/3.3_stable) and download the corresponding version for your PC.
    - Process to the setup: disable "enable auto update" and make sure "pack as cia" is enabled
    - On "Title/Firmware", type the latest version and your region letter (ex: ```11.16.0-49E```) then press "Begin download" and wait.
@@ -44,8 +44,8 @@ If you're getting an error or plan to uninstall CFW:
    - KEYBOARD ONLY: Navigate to SDCARD where you put the cia and select it.
    - ENTIRE FIRMWARE: Navigate to SDCARD where you put the folder and select all cias inside with L + Dpad Right and select any of them.
    - Choose ```CIA image options``` and ```Install game image``` then confirm.
-   - After that, press A, then start to reboot and it's done!
-   - You can now delete 3DNUS and the cia you copied on your sdcard.
+   - After waiting, press A, then start to reboot and it's done!
+   - You can now delete 3DNUS and the cia(s) you copied on your sdcard.
 
 ## Warning: the keyboard isn't signed, meaning you SHOULD NOT uninstall your custom firmware.
 * I am NOT responsible if you did, and have issues related to keyboard, you have been warned.
