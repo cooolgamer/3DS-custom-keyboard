@@ -27,7 +27,7 @@ Please follow those steps carefully:
    - Once you get a menu telling you to do a system update, say yes and accept everything.
    - Wait for the update to complete and it's done!
 
-If you're getting an error:
+If you're getting an error or plan to uninstall CFW:
 
 - You have 2 choices, "KEYBOARD ONLY" and "ENTIRE FIRMWARE".
 - Keyboard only is just reinstalling the clean keyboard to fix the keyboard,
@@ -42,14 +42,14 @@ If you're getting an error:
    - ENTIRE FIRMWARE: Copy the folder containing all cias anywhere on your sdcard)
    - Open godmode9 on your console (hold start while booting and make sure it's updated up to v2.0.0 to support CIA installation).
    - KEYBOARD ONLY: Navigate to SDCARD where you put the cia and select it.
-   - ENTIRE FIRMWARE: Navigate to SDCARD where you put the folder and select all cias inside with L + Dpadright and select any of them.
-   - Choose "CIA image options" and "Install game image" then confirm.
+   - ENTIRE FIRMWARE: Navigate to SDCARD where you put the folder and select all cias inside with L + Dpad Right and select any of them.
+   - Choose ```CIA image options``` and ```Install game image``` then confirm.
    - After that, press A, then start to reboot and it's done!
-   - You can now delete 3DNUS and the keyboard cia on your sdcard.
+   - You can now delete 3DNUS and the cia you copied on your sdcard.
 
 ## Warning: the keyboard isn't signed, meaning you SHOULD NOT uninstall your custom firmware.
 * I am NOT responsible if you did, and have issues related to keyboard, you have been warned.
-* If you want to uninstall CFW, then follow the Second method of the uninstallation tutorial.
+* If you plan to uninstall CFW, then follow the Second method of the [uninstallation tutorial](https://github.com/cooolgamer/3DS-custom-keyboard#how-to-uninstall).
 
 ## Need help or info?
 You can contact me on my [Discord server](https://discord.gg/g776yamU)
