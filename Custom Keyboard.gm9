@@ -1,0 +1,126 @@
+set WORKINGPATH "0:/gm9/customkyb"
+if not find $[WORKINGPATH] NULL
+  echo "Patch directory not found.\nPlease follow the tutorial on GitHub."
+  goto exit
+end
+
+
+# Region and Emunand check
+
+
+if chk $[REGION] "USA"
+    set USINGREGION "USA"
+elif chk $[REGION] "EUR"
+    set USINGREGION "EUR"
+else
+    set USINGREGION ""
+end
+
+set WORKINGDRIVE "1:"
+set EMUFLAG ""
+
+if find 4:/title NULL
+    if ask "Emunand detected, do you want\nto install on it?"
+        # If you have 2 or more secinfos, it's not gonna work properly... I'm not dealing with that :P
+        find 4:/rw/sys/SecureInfo_? SECINFO
+        fget $[SECINFO]@100:1 EMUREGION
+        if chk $[EMUREGION] "01"
+            set USINGREGION "USA"
+        elif chk $[EMUREGION] "02"
+            set USINGREGION "EUR"
+        end
+
+        set WORKINGDRIVE "4:"
+        set EMUFLAG "-e"
+    end
+end
+
+if chk $[USINGREGION] "USA"
+    set KYBPATH "$[WORKINGDRIVE]/title/00040030/0000C802/content"
+    set TITLEID "000400300000C802"
+    set ROMFSHASH "F54C6631C98FA401FDED95AC961B450EF708526E4FC0BB3B6FFA590E34982426"
+elif chk $[USINGREGION] "EUR"
+    set KYBPATH "$[WORKINGDRIVE]/title/00040030/0000D002/content"
+    set TITLEID "000400300000D002"
+    set ROMFSHASH "5E0D387D7740A330B01669083A55D39047FDB9F70C303C6BC101F4BC6D8B4766"
+else
+    echo "Your region is not supported.\nSupported regions are: USA and EUR."
+    goto exit
+end
+
+
+# Main menu
+@menu
+labelsel -o -s "==Custom Keyboard Helper==" mainmenu_*
+goto exit
+
+
+# Dump and Prepare Keyboard
+@mainmenu_Dump_and_Prepare_Keyboard
+set ERRORMSG "Keyboard not found.\nIf you use an emunand, you probably have multiple\nsecureinfos in 4:/rw/sys/.\nMake sure to have only one and try again.\n(use the C and move the others if you have one)\nIf you are on sysnand or the issue persists,\nyou fucked up the keyboard.\nFollow the uninstallation guide to get it back"
+find $[KYBPATH]/*.tmd TMD
+
+# Build legit keyboard
+set ERRORMSG "The keyboard is not legit.\nDid you install a custom one already?\nIf so, restore it first.\nFollow the uninstallation guide\nif you don't have a backup."
+buildcia $[TMD]
+
+set ERRORMSG ""
+
+find $[GM9OUT]/$[TITLEID]*.cia CIA
+mv -k -n -o $[CIA] $[WORKINGPATH]/Original_Keyboard.cia
+
+# Decrypt the keyboard to patch it
+cp -w $[WORKINGPATH]/Original_Keyboard.cia $[WORKINGPATH]/Keyboard.cia
+decrypt $[WORKINGPATH]/Keyboard.cia
+
+
+# Get the romfs file and patch it
+imgmount $[WORKINGPATH]/Keyboard.cia
+find G:/*.app APPFILE
+cp -w $[APPFILE] $[WORKINGPATH]/tmp.app
+imgumount
+
+imgmount $[WORKINGPATH]/tmp.app
+cp -w G:/romfs.bin $[WORKINGPATH]/romfs.bin
+imgumount
+rm -s $[WORKINGPATH]/tmp.app
+
+set ERRORMSG "The system seems very out of date. Make sure\nthe version is over 9.0 and try again."
+sha $[WORKINGPATH]/romfs.bin $[ROMFSHASH]
+
+set ERRORMSG "Something went wrong, do you\nhave the romfspatch.ips file?"
+applyips $[WORKINGPATH]/romfspatch.ips $[WORKINGPATH]/romfs.bin $[WORKINGPATH]/romfs.bin
+echo "Patch applied successfully.\nYou will find the original keyboard, the keyboard\nto patch, and the patched romfs.bin in:\n$[WORKINGPATH]"
+echo "Now you need to build it on your PC\nand install it using this script.\nSee you later!"
+
+goto exit
+
+
+
+# Install Patched Keyboard
+@mainmenu_Install_Patched_Keyboard
+if not find $[WORKINGPATH]/Keyboard_edited.cia
+    echo "Patched Keyboard not found. It should be like this:\n$[WORKINGPATH]/Keyboard_edited.cia"
+end
+
+# Gm9 will tell if it fails then exit
+encrypt $[WORKINGPATH]/Keyboard_edited.cia
+install $[EMUFLAG] $[WORKINGPATH]/Keyboard_edited.cia
+# Deletes the unpatched decrypted Keyboard
+rm -o -s $[WORKINGPATH]/Keyboard.cia
+echo "Custom Keyboard installed successfully!"
+goto exit
+
+
+
+# Restore Keyboard
+@mainmenu_Restore_Original_Keyboard
+if not find $[WORKINGPATH]/Original_Keyboard.cia
+    echo "Backup not found. It should be like this:\n$[WORKINGPATH]/Original_Keyboard.cia"
+end
+
+# Gm9 will tell if it fails then exit
+install $[EMUFLAG] $[WORKINGPATH]/Original_Keyboard.cia
+echo "Original Keyboard restored successfully!"
+
+@exit
