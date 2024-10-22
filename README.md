@@ -14,8 +14,7 @@ Supported languages: All :)
 ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/qwerty.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/symbols.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/cell.bmp)   
 
 ## How to install?
-* To install, go to the [releases page](https://github.com/cooolgamer/3DS-custom-keyboard/releases) then download the "Coool Custom Keyboard (your region).cia" file and install it with your favorite CIA installer.
-* Check the [WARNING](https://github.com/cooolgamer/3DS-custom-keyboard#warning-the-keyboard-isnt-signed-meaning-you-should-not-uninstall-your-custom-firmware) and of course, enjoy!
+Under Construction, check the latest commit to see the progression.
 
 ## How to uninstall?
 Please follow those steps carefully:
