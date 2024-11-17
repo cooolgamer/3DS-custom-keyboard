@@ -106,9 +106,11 @@ end
 # Gm9 will tell if it fails then exit
 encrypt $[WORKINGPATH]/Keyboard_patched.cia
 install $[EMUFLAG] $[WORKINGPATH]/Keyboard_patched.cia
-# Deletes the unpatched decrypted Keyboard
+# Clean up
 rm -o -s $[WORKINGPATH]/Keyboard.cia
-echo "Custom Keyboard installed successfully!\nPress A to reboot and enjoy!"
+rm -p -s $[WORKINGPATH]/romfs.bin
+rm -p -s $[WORKINGPATH]/romfs-patched.bin
+echo "Custom Keyboard installed successfully!\nThe Keyboard_patched.cia is now encrypted, so\nyou can now install it with any CIA\ninstaller such as FBI if you want to.\nPress A to reboot and enjoy!"
 reboot
 
 
