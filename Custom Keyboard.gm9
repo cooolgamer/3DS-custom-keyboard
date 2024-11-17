@@ -17,7 +17,7 @@ else
 end
 
 set WORKINGDRIVE "1:"
-set EMUFLAG ""
+set EMUFLAG "f"
 
 if find 4:/title NULL
     if ask "Emunand detected, do you want\nto install on it?"
@@ -31,7 +31,7 @@ if find 4:/title NULL
         end
 
         set WORKINGDRIVE "4:"
-        set EMUFLAG "-e"
+        set EMUFLAG "t"
     end
 end
 
@@ -99,17 +99,23 @@ poweroff
 
 # Install Patched Keyboard
 @mainmenu_Install_Patched_Keyboard
-if not find $[WORKINGPATH]/Keyboard_patched.cia
+if not find $[WORKINGPATH]/Keyboard_patched.cia NULL
     echo "Patched Keyboard not found. It should be like this:\n$[WORKINGPATH]/Keyboard_patched.cia"
 end
 
 # Gm9 will tell if it fails then exit
 encrypt $[WORKINGPATH]/Keyboard_patched.cia
-install $[EMUFLAG] $[WORKINGPATH]/Keyboard_patched.cia
+
+if chk $[EMUFLAG] "t"
+    install -e $[WORKINGPATH]/Keyboard_patched.cia
+else
+    install $[WORKINGPATH]/Keyboard_patched.cia
+end
+
 # Clean up
 rm -o -s $[WORKINGPATH]/Keyboard.cia
-rm -p -s $[WORKINGPATH]/romfs.bin
-rm -p -s $[WORKINGPATH]/romfs-patched.bin
+rm -o -s $[WORKINGPATH]/romfs.bin
+rm -o -s $[WORKINGPATH]/romfs-patched.bin
 echo "Custom Keyboard installed successfully!\nThe Keyboard_patched.cia is now encrypted, so\nyou can now install it with any CIA\ninstaller such as FBI if you want to.\nPress A to reboot and enjoy!"
 reboot
 
@@ -117,12 +123,18 @@ reboot
 
 # Restore Keyboard
 @mainmenu_Restore_Original_Keyboard
-if not find $[WORKINGPATH]/Original_Keyboard.cia
+if not find $[WORKINGPATH]/Original_Keyboard.cia NULL
     echo "Backup not found. It should be like this:\n$[WORKINGPATH]/Original_Keyboard.cia"
 end
 
 # Gm9 will tell if it fails then exit
-install $[EMUFLAG] $[WORKINGPATH]/Original_Keyboard.cia
+
+if chk $[EMUFLAG] "t"
+    install -e $[WORKINGPATH]/Original_Keyboard.cia
+else
+    install $[WORKINGPATH]/Original_Keyboard.cia
+end
+
 echo "Original Keyboard restored successfully!"
 
 @exit
