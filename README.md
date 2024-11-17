@@ -11,10 +11,39 @@ Supported languages: All :)
 * Changed the 4 buttons layout
 
 ## Screenshots:
-![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/qwerty.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/symbols.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/cell.bmp)   
+![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/qwerty.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/symbols.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/cell.bmp)
+
+## About 3dstool, ctrtool and makerom
+You will find in the "PC/bin" folder on the releases, 3 executables, these are older versions of [makerom and ctrtool](https://github.com/3DSGuy/Project_CTR/releases) and [3dstool](https://github.com/dnasdw/3dstool/releases) because the newer ones doesn't work properly.
 
 ## How to install?
-Under Construction, check the latest commit to see the progression.
+Note: a windows computer is required.
+### Getting the requirements
+- Download the latest "Coool Custom Keyboard" archive in the [releases tab](https://github.com/cooolgamer/3DS-custom-keyboard/releases/)
+- Extract the archive, put all contents of the "SD" folder in the root of your 3DS SD card, and put the "PC" folder somewhere on your PC
+
+### Dumping and patching the keyboard and its romfs
+- Open godmode9 on your 3ds (hold start while booting) with your SD card in
+- Press the home button, go to scripts, and then select the Custom Keyboard script
+- Select "Dump and Prepare Keyboard"
+- Wait and accept the messages, which should shut down your 3ds
+
+### Building the keyboard
+- If you have a SD slot on your computer, plug your SD card in
+  - if you don't, copy the ``keyboard.cia`` and ``romfs-patched.bin`` files on the "PC" folder
+- Run ``Custom Keyboard Patcher.bat`` and select the destination
+- Wait for it to finish (you can ignore the aes key errors)
+- If you don't have an SD card slot, copy the ``Keyboard_patched.cia`` file in the gm9/customkyb folder on your SD card
+  - if your SD card was in, you can unplug it and put it on your 3ds
+- Warning: DO NOT INSTALL IT USING FBI! You must encrypt it before, which the godmode9 script does in the next step
+
+### Installing the custom keyboard
+- Open godmode9 on your 3ds with your SD card in
+- Run the Custom Keyboard script like before
+- Select "Install Patched Keyboard"
+  - Note: After doing this, the ``Keyboard_patched.cia`` file can now be installed with any CIA installer like FBI because the script encrypts it
+  - You don't need to install it with FBI, as the script already installed it for you
+- Enjoy!
 
 ## How to uninstall?
 Please follow those steps carefully:
@@ -54,5 +83,6 @@ If you're getting an error:
 You can contact me on my [Discord server](https://discord.gg/g776yamU)
 
 ## Credits:
-* [HMRT](https://github.com/schrmh/HMRT) (HomeMenu Rebuild Tool) which allowed me to easily extract and edit the cia (should be decrypted)
+* [HMRT](https://github.com/schrmh/HMRT) (HomeMenu Rebuild Tool) which allowed me to easily extract and edit the cia
+* [ctrtool, makerom](https://github.com/3DSGuy/Project_CTR/) and [3dstool](https://github.com/dnasdw/3dstool/) developers
 * Thanks to Zukkunda for inspiring me of the blue color!
