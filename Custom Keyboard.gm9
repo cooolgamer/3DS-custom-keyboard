@@ -44,28 +44,29 @@ elif chk $[USINGREGION] "EUR"
     set TITLEID "000400300000D002"
     set ROMFSHASH "5E0D387D7740A330B01669083A55D39047FDB9F70C303C6BC101F4BC6D8B4766"
 else
-    echo "Your region is not supported.\nSupported regions are: USA and EUR."
+    echo "Your region is not supported.\nOnly USA and EUR regions are supported."
     goto exit
 end
 
 
 # Main menu
 @menu
-labelsel -o -s "==Custom Keyboard Helper==" mainmenu_*
+labelsel -o -s "== Custom Keyboard Helper ==" mainmenu_*
 goto exit
 
 
 # Dump and Prepare Keyboard
 @mainmenu_Dump_and_Prepare_Keyboard
-set ERRORMSG "Keyboard not found.\nIf you use an emunand, you probably have multiple\nsecureinfos in 4:/rw/sys/.\nMake sure to have only one and try again.\n(use the C and move the others if you have one)\nIf you are on sysnand or the issue persists,\nyou fucked up the keyboard.\nFollow the uninstallation guide to get it back"
+set ERRORMSG "Keyboard not found. Make sure you have the\noriginal keyboard installed and try again."
 find $[KYBPATH]/*.tmd TMD
 
 # Build legit keyboard
 set ERRORMSG "The keyboard is not legit.\nDid you install a custom one already?\nIf so, restore it first.\nFollow the uninstallation guide\nif you don't have a backup."
-buildcia $[TMD]
+buildcia -l $[TMD]
 
 set ERRORMSG ""
 
+# Rename the og keyboard dump
 find $[GM9OUT]/$[TITLEID]*.cia CIA
 mv -k -n -o $[CIA] $[WORKINGPATH]/Original_Keyboard.cia
 
@@ -88,28 +89,27 @@ rm -s $[WORKINGPATH]/tmp.app
 set ERRORMSG "The system seems very out of date. Make sure\nthe version is over 9.0 and try again."
 sha $[WORKINGPATH]/romfs.bin $[ROMFSHASH]
 
-set ERRORMSG "Something went wrong, do you\nhave the romfspatch.ips file?"
-applyips $[WORKINGPATH]/romfspatch.ips $[WORKINGPATH]/romfs.bin $[WORKINGPATH]/romfs.bin
+set ERRORMSG "Something went wrong, do you\nhave the romfs-$[USINGREGION].bps file?"
+applybps $[WORKINGPATH]/romfs-$[USINGREGION].bps $[WORKINGPATH]/romfs.bin $[WORKINGPATH]/romfs-patched.bin
 echo "Patch applied successfully.\nYou will find the original keyboard, the keyboard\nto patch, and the patched romfs.bin in:\n$[WORKINGPATH]"
-echo "Now you need to build it on your PC\nand install it using this script.\nSee you later!"
-
-goto exit
+echo "Now, you need to build it on your PC\nand install it using this script.\nDO NOT USE ANYTHING ELSE TO INSTALL IT!\nSee you later!"
+poweroff
 
 
 
 # Install Patched Keyboard
 @mainmenu_Install_Patched_Keyboard
-if not find $[WORKINGPATH]/Keyboard_edited.cia
-    echo "Patched Keyboard not found. It should be like this:\n$[WORKINGPATH]/Keyboard_edited.cia"
+if not find $[WORKINGPATH]/Keyboard_patched.cia
+    echo "Patched Keyboard not found. It should be like this:\n$[WORKINGPATH]/Keyboard_patched.cia"
 end
 
 # Gm9 will tell if it fails then exit
-encrypt $[WORKINGPATH]/Keyboard_edited.cia
-install $[EMUFLAG] $[WORKINGPATH]/Keyboard_edited.cia
+encrypt $[WORKINGPATH]/Keyboard_patched.cia
+install $[EMUFLAG] $[WORKINGPATH]/Keyboard_patched.cia
 # Deletes the unpatched decrypted Keyboard
 rm -o -s $[WORKINGPATH]/Keyboard.cia
-echo "Custom Keyboard installed successfully!"
-goto exit
+echo "Custom Keyboard installed successfully!\nPress A to reboot and enjoy!"
+reboot
 
 
 
