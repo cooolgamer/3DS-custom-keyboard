@@ -21,6 +21,7 @@ Note: a windows computer is required.
 ### Getting the requirements
 - Download the latest "Coool Custom Keyboard" archive in the [releases tab](https://github.com/cooolgamer/3DS-custom-keyboard/releases/)
 - Extract the archive, put all contents of the "SD" folder in the root of your 3DS SD card, and put the "PC" folder somewhere on your PC
+- You should have the original, unmodified keyboard installed on your 3ds, if you have a custom one, you need to restore the original keyboard
 
 ### Dumping and patching the keyboard and its romfs
 - Open godmode9 on your 3ds (hold start while booting) with your SD card in
@@ -80,7 +81,7 @@ If you're getting an error:
 * If you plan to uninstall CFW, then follow the [uninstallation tutorial](https://github.com/cooolgamer/3DS-custom-keyboard#how-to-uninstall).
 
 ## Need help or info?
-You can contact me on my [Discord server](https://discord.gg/g776yamU)
+You can contact me on my [Discord server](https://discord.gg/RxeZcgGRQB)
 
 ## Credits:
 * [HMRT](https://github.com/schrmh/HMRT) (HomeMenu Rebuild Tool) which allowed me to easily extract and edit the cia
