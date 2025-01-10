@@ -12,10 +12,20 @@ set EMUFLAG "f"
 
 if find 4:/title NULL
     if ask "Emunand detected, do you want\nto install on it?"
+        set WORKINGDRIVE "4:"
         set EMUFLAG "t"
     end
 end
 
+
+# Main menu
+@menu
+labelsel -o -s "== Custom Keyboard Helper ==" mainmenu_*
+goto exit
+
+
+# Dump and Prepare Keyboard
+@mainmenu_Dump_and_Prepare_Keyboard
 
 # Asks the region, I'm not doing it automatically anymore
 # because it didn't work for region changed systems.
@@ -50,15 +60,6 @@ else
     goto exit
 end
 
-
-# Main menu
-@menu
-labelsel -o -s "== Custom Keyboard Helper ==" mainmenu_*
-goto exit
-
-
-# Dump and Prepare Keyboard
-@mainmenu_Dump_and_Prepare_Keyboard
 set ERRORMSG "Keyboard not found.\nMake sure you picked the right region.\nIf so, try to perform\na system update and try again."
 find $[KYBPATH]/*.tmd TMD
 
@@ -90,10 +91,10 @@ rm -s $[WORKINGPATH]/tmp.app
 
 set ERRORMSG "The system seems very out of date. Make sure\nthe version is over 9.0 and try again."
 sha $[WORKINGPATH]/romfs.bin $[ROMFSHASH]
-rm -o -s $[WORKINGPATH]/romfs.bin
 
 set ERRORMSG "Something went wrong, do you\nhave the romfs-$[USINGREGION].bps file?"
 applybps $[WORKINGPATH]/romfs-$[USINGREGION].bps $[WORKINGPATH]/romfs.bin $[WORKINGPATH]/romfs-patched.bin
+rm -o -s $[WORKINGPATH]/romfs.bin
 echo "Patch applied successfully.\nYou will find the original keyboard, the keyboard\nto patch, and the patched romfs.bin in:\n$[WORKINGPATH]"
 echo "Now, you need to build it on your PC\nand encrypt it using this script after.\nDO NOT INSTALL IT YET or it will CRASH!\nSee you later!"
 poweroff
