@@ -59,7 +59,7 @@ goto exit
 
 # Dump and Prepare Keyboard
 @mainmenu_Dump_and_Prepare_Keyboard
-set ERRORMSG "Keyboard not found. Try to perform\na system update and try again."
+set ERRORMSG "Keyboard not found.\nMake sure you picked the right region.\nIf so, try to perform\na system update and try again."
 find $[KYBPATH]/*.tmd TMD
 
 # Build legit keyboard
