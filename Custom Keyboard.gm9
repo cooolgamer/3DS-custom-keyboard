@@ -5,35 +5,37 @@ if not find $[WORKINGPATH] NULL
 end
 
 
-# Region and Emunand check
-
-
-if chk $[REGION] "USA"
-    set USINGREGION "USA"
-elif chk $[REGION] "EUR"
-    set USINGREGION "EUR"
-else
-    set USINGREGION ""
-end
+# Emunand check
 
 set WORKINGDRIVE "1:"
 set EMUFLAG "f"
 
 if find 4:/title NULL
     if ask "Emunand detected, do you want\nto install on it?"
-        # If you have 2 or more secinfos, it's not gonna work properly... I'm not dealing with that :P
-        find 4:/rw/sys/SecureInfo_? SECINFO
-        fget $[SECINFO]@100:1 EMUREGION
-        if chk $[EMUREGION] "01"
-            set USINGREGION "USA"
-        elif chk $[EMUREGION] "02"
-            set USINGREGION "EUR"
-        end
-
-        set WORKINGDRIVE "4:"
         set EMUFLAG "t"
     end
 end
+
+
+# Asks the region, I'm not doing it automatically anymore
+# because it didn't work for region changed systems.
+
+labelsel -o -s "Select your region" regionmenu_*
+goto exit
+
+@regionmenu_USA
+set USINGREGION "USA"
+goto setvariables
+
+@regionmenu_EUR
+set USINGREGION "EUR"
+goto setvariables
+
+@regionmenu_Other
+set USINGREGION "Other"
+goto setvariables
+
+@setvariables
 
 if chk $[USINGREGION] "USA"
     set KYBPATH "$[WORKINGDRIVE]/title/00040030/0000C802/content"
@@ -57,7 +59,7 @@ goto exit
 
 # Dump and Prepare Keyboard
 @mainmenu_Dump_and_Prepare_Keyboard
-set ERRORMSG "Keyboard not found. Make sure you have the\noriginal keyboard installed and try again."
+set ERRORMSG "Keyboard not found. Try to perform\na system update and try again."
 find $[KYBPATH]/*.tmd TMD
 
 # Build legit keyboard
