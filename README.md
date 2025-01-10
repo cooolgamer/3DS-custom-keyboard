@@ -1,8 +1,9 @@
 # 3DS custom keyboard
 
 ## Support
-Supported models: all 3DS/2DS EUR/USA   
-Supported languages: All :)
+Supported models: All
+Supported regions: EUR/USA   
+Supported languages: All
 
 ## What's edited?
 * Custom symbols
@@ -13,8 +14,10 @@ Supported languages: All :)
 ## Screenshots:
 ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/qwerty.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/symbols.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/cell.bmp)
 
-## About 3dstool, ctrtool and makerom
-You will find in the "PC/bin" folder on the releases, 3 executables, these are older versions of [makerom and ctrtool](https://github.com/3DSGuy/Project_CTR/releases) and [3dstool](https://github.com/dnasdw/3dstool/releases) because the newer ones doesn't work properly.
+## WARNING: DO NOT uninstall your custom firmware.
+* The keyboard is not signed, meaning it doesn't work without CFW.
+* If you plan to uninstall CFW, then follow the [uninstallation tutorial](https://github.com/cooolgamer/3DS-custom-keyboard#how-to-uninstall).
+* I am NOT responsible if you did, and have issues related to the keyboard, you have been warned.
 
 ## How to install?
 Note: a windows computer is required.
@@ -36,20 +39,25 @@ Note: a windows computer is required.
 - Wait for it to finish (you can ignore the aes key errors)
 - If you don't have an SD card slot, copy the ``Keyboard_patched.cia`` file in the gm9/customkyb folder on your SD card
   - if your SD card was in, you can unplug it and put it on your 3ds
-- Warning: DO NOT INSTALL IT USING FBI! You must encrypt it before, which the godmode9 script does in the next step
+- Warning: DO NOT INSTALL NOW! You must encrypt it before, which the godmode9 script does in the next step
 
 ### Installing the custom keyboard
 - Open godmode9 on your 3ds with your SD card in
 - Run the Custom Keyboard script like before
-- Select "Install Patched Keyboard"
-  - Note: After doing this, the ``Keyboard_patched.cia`` file can now be installed with any CIA installer like FBI because the script encrypts it
-  - You don't need to install it with FBI, as the script already installed it for you
+- Select "Encrypt Patched Keyboard"
+  - If you skip this step and install it directly, the keyboard will crash!
+- Go to FBI, SD card, gm9, customkyb, select "Keyboard_patched.cia" and "install CIA"
 - Enjoy!
 
 ## How to uninstall?
-Please follow those steps carefully:
+- Open godmode9 on your 3ds with your SD card in
+- Run the Custom Keyboard script
+- Select "Restore original keyboard"
+- Done!
 
-- FIRST METHOD: reinstalling with system update.
+If you get a error, please follow these steps carefully:
+
+- FIRST METHOD: reinstalling with a system update.
    - Go to fbi, choose titles, wait for all titles to load, search for a red title named ```000400300000D002``` if you are EUR, or ```000400300000C802``` if you are USA.
    - Select this title and choose "delete title and ticket", this will delete it but don't worry, we are going to reinstall it.
    - Power off your console and launch recovery mode by holding L + R + A + dpad UP buttons and press power with all those buttons held.
@@ -76,12 +84,11 @@ If you're getting an error:
    - After waiting, press A, then start to reboot and it's done!
    - You can now delete 3DNUS and the cia(s) you copied on your sdcard.
 
-## Warning: the keyboard isn't signed, meaning you SHOULD NOT uninstall your custom firmware.
-* I am NOT responsible if you did, and have issues related to keyboard, you have been warned.
-* If you plan to uninstall CFW, then follow the [uninstallation tutorial](https://github.com/cooolgamer/3DS-custom-keyboard#how-to-uninstall).
-
 ## Need help or info?
 You can contact me on my [Discord server](https://discord.gg/RxeZcgGRQB)
+
+## About 3dstool, ctrtool and makerom
+You will find in the "PC/bin" folder on the releases, 3 executables, these are older versions of [makerom and ctrtool](https://github.com/3DSGuy/Project_CTR/releases) and [3dstool](https://github.com/dnasdw/3dstool/releases) because the newer ones doesn't work properly.
 
 ## Credits:
 * [HMRT](https://github.com/schrmh/HMRT) (HomeMenu Rebuild Tool) which allowed me to easily extract and edit the cia

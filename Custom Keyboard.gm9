@@ -90,35 +90,30 @@ rm -s $[WORKINGPATH]/tmp.app
 
 set ERRORMSG "The system seems very out of date. Make sure\nthe version is over 9.0 and try again."
 sha $[WORKINGPATH]/romfs.bin $[ROMFSHASH]
+rm -o -s $[WORKINGPATH]/romfs.bin
 
 set ERRORMSG "Something went wrong, do you\nhave the romfs-$[USINGREGION].bps file?"
 applybps $[WORKINGPATH]/romfs-$[USINGREGION].bps $[WORKINGPATH]/romfs.bin $[WORKINGPATH]/romfs-patched.bin
 echo "Patch applied successfully.\nYou will find the original keyboard, the keyboard\nto patch, and the patched romfs.bin in:\n$[WORKINGPATH]"
-echo "Now, you need to build it on your PC\nand install it using this script.\nDO NOT USE ANYTHING ELSE TO INSTALL IT!\nSee you later!"
+echo "Now, you need to build it on your PC\nand encrypt it using this script after.\nDO NOT INSTALL IT YET or it will CRASH!\nSee you later!"
 poweroff
 
 
 
-# Install Patched Keyboard
-@mainmenu_Install_Patched_Keyboard
+# Encrypt Patched Keyboard
+@mainmenu_Encrypt_Patched_Keyboard
 if not find $[WORKINGPATH]/Keyboard_patched.cia NULL
     echo "Patched Keyboard not found. It should be like this:\n$[WORKINGPATH]/Keyboard_patched.cia"
 end
 
-# Gm9 will tell if it fails then exit
-encrypt $[WORKINGPATH]/Keyboard_patched.cia
-
-if chk $[EMUFLAG] "t"
-    install -e $[WORKINGPATH]/Keyboard_patched.cia
-else
-    install $[WORKINGPATH]/Keyboard_patched.cia
-end
+# It seems like gm9 doesn't install system apps with a script,
+# probably for security reasons or a bug.
 
 # Clean up
 rm -o -s $[WORKINGPATH]/Keyboard.cia
-rm -o -s $[WORKINGPATH]/romfs.bin
 rm -o -s $[WORKINGPATH]/romfs-patched.bin
-echo "Custom Keyboard installed successfully!\nThe Keyboard_patched.cia is now encrypted, so\nyou can now install it with any CIA\ninstaller such as FBI if you want to.\nPress A to reboot and enjoy!"
+echo "IMPORTANT: NEVER uninstall the CFW with the\ncustom keyboard installed or you will be\nsoftbricked! If you really want to uninstall it,\nrestore the original keyboard first."
+echo "Custom Keyboard prepared successfully!\nPress A to reboot, then install it from the\nfollowing path using FBI or godmode9 and enjoy!\n$[WORKINGPATH]/Keyboard_patched.cia"
 reboot
 
 
