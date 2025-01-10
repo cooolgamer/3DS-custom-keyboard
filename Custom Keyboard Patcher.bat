@@ -51,7 +51,7 @@ FOR %%S in (SystemApp.0000.*) do (
 3dstool.exe -xvtf cxi %cxi0% --header ncchheader.bin --exh exheader.bin --exefs exefs.bin --romfs romfs.bin --plain plainrgn.bin
 copy /y %DESTDIR%romfs-patched.bin romfs.bin
 3dstool.exe -cvtf cxi %cxi0% --header ncchheader.bin --exh exheader.bin --exefs exefs.bin --romfs romfs.bin --plain plainrgn.bin
-makerom.exe -f cia -content %cxi0%:0 -o "%DESTDIR%%OUTNAME%.cia"
+makerom.exe -f cia -content %cxi0%:0 -o "%DESTDIR%%OUTNAME%.cia" -major 4 -minor 0
 
 echo Cleaning up...
 del /q SystemApp.0000.*
