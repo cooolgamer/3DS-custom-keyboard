@@ -20,39 +20,23 @@ Supported languages: All
 * I am NOT responsible if you did, and have issues related to the keyboard, you have been warned.
 
 ## How to install?
-Note: a windows computer is required.
 ### Getting the requirements
 - Download the latest "Coool Custom Keyboard" archive in the [releases tab](https://github.com/cooolgamer/3DS-custom-keyboard/releases/)
-- Extract the archive, put all contents of the "SD" folder in the root of your 3DS SD card, and put the "PC" folder somewhere on your PC
+- Extract the archive, put the "gm9" folder in the root of your sd card
 - You should have the original, unmodified keyboard installed on your 3ds, if you have a custom one, you need to restore the original keyboard
 
-### Dumping and patching the keyboard and its romfs
+### Preparing the patched keyboard
 - Open godmode9 on your 3ds (hold start while booting) with your SD card in
 - Press the home button, go to scripts, and then select the Custom Keyboard script
-- Select "Dump and Prepare Keyboard"
-- Wait and accept the messages, which should shut down your 3ds
+- Wait, **read** and accept the messages, which should reboot your 3ds if everything worked
 
-### Building the keyboard
-- If you have a SD slot on your computer, plug your SD card in
-  - if you don't, copy the ``keyboard.cia`` and ``romfs-patched.bin`` files on the "PC" folder
-- Run ``Custom Keyboard Patcher.bat`` and select the destination
-- Wait for it to finish (you can ignore the aes key errors)
-- If you don't have an SD card slot, copy the ``Keyboard_patched.cia`` file in the gm9/customkyb folder on your SD card
-  - if your SD card was in, you can unplug it and put it on your 3ds
-- Warning: DO NOT INSTALL NOW! You must encrypt it before, which the godmode9 script does in the next step
-
-### Installing the custom keyboard
-- Open godmode9 on your 3ds with your SD card in
-- Run the Custom Keyboard script like before
-- Select "Encrypt Patched Keyboard"
-  - If you skip this step and install it directly, the keyboard will crash!
+### Install the custom keyboard
 - Go to FBI, SD card, gm9, customkyb, select "Keyboard_patched.cia" and "install CIA"
 - Enjoy!
 
+
 ## How to uninstall?
-- Open godmode9 on your 3ds with your SD card in
-- Run the Custom Keyboard script
-- Select "Restore original keyboard"
+- Go to FBI, SD card, gm9, customkyb, select "Keyboard_original.cia" and "install CIA"
 - Done!
 
 If you get a error, please follow these steps carefully:

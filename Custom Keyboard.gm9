@@ -66,10 +66,10 @@ set ERRORMSG ""
 
 # Rename the og keyboard dump
 find $[GM9OUT]/$[TITLEID]*.cia CIA
-mv -k -n -o $[CIA] $[WORKINGPATH]/Original_Keyboard.cia
+mv -k -n -o $[CIA] $[WORKINGPATH]/Keyboard_Original.cia
 
 # Decrypt the keyboard to patch it
-cp -w $[WORKINGPATH]/Original_Keyboard.cia $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
+cp -w $[WORKINGPATH]/Keyboard_Original.cia $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
 decrypt $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
 
 
@@ -90,7 +90,7 @@ mv -k -n -o $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia $[WORKINGPATH]/Ke
 # probably for security reasons or a bug,
 # So I'll just print the instructions.
 
-echo "IMPORTANT: NEVER uninstall the CFW with the\ncustom keyboard installed or you will be\nsoftbricked! If you really want to uninstall it,\nrestore the original keyboard first from here:\n(0 is the SD card)\n\n$[WORKINGPATH]/Original_Keyboard.cia"
+echo "IMPORTANT: NEVER uninstall the CFW with the\ncustom keyboard installed or you will be\nsoftbricked! If you really want to uninstall it,\nrestore the original keyboard first from here:\n(0 is the SD card)\n\n$[WORKINGPATH]/Keyboard_Original.cia"
 echo "Custom Keyboard prepared successfully!\nPress A to reboot, then install it from the\nfollowing path using FBI or godmode9 and enjoy!\n\n$[WORKINGPATH]/Keyboard_patched.cia"
 
 # cleanup and self destruct, you usually don't want this anymore
