@@ -4,28 +4,22 @@ if not find $[WORKINGPATH] NULL
   goto exit
 end
 
+# Cleanup
+rm -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
+rm -o -s $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia
 
 # Emunand check
 
 set WORKINGDRIVE "1:"
-set EMUFLAG "f"
 
 if find 4:/title NULL
-    if ask "Emunand detected, do you want\nto install on it?"
+    if ask "Emunand detected,\ndo you want to use it?"
         set WORKINGDRIVE "4:"
-        set EMUFLAG "t"
     end
 end
 
 
-# Main menu
-@menu
-labelsel -o -s "== Custom Keyboard Helper ==" mainmenu_*
-goto exit
-
-
-# Dump and Prepare Keyboard
-@mainmenu_Dump_and_Prepare_Keyboard
+# Dumping the keyboard
 
 # Asks the region, I'm not doing it automatically anymore
 # because it didn't work for region changed systems.
@@ -50,15 +44,16 @@ goto setvariables
 if chk $[USINGREGION] "USA"
     set KYBPATH "$[WORKINGDRIVE]/title/00040030/0000C802/content"
     set TITLEID "000400300000C802"
-    set ROMFSHASH "F54C6631C98FA401FDED95AC961B450EF708526E4FC0BB3B6FFA590E34982426"
+    set KYBHASH "BCB4603DE9A25F5C1A1A4A5B9C78A18851456C0D9E76F9B4E430661FFBD25DDC"
 elif chk $[USINGREGION] "EUR"
     set KYBPATH "$[WORKINGDRIVE]/title/00040030/0000D002/content"
     set TITLEID "000400300000D002"
-    set ROMFSHASH "5E0D387D7740A330B01669083A55D39047FDB9F70C303C6BC101F4BC6D8B4766"
+    set KYBHASH "CA522F1937BD1933CA4B071C74E1FB48319E2573DCB1058396E68BCEA008B07D"
 else
     echo "Your region is not supported.\nOnly USA and EUR regions are supported."
     goto exit
 end
+
 
 set ERRORMSG "Keyboard not found.\nMake sure you picked the right region.\nIf so, try to perform\na system update and try again."
 find $[KYBPATH]/*.tmd TMD
@@ -74,65 +69,35 @@ find $[GM9OUT]/$[TITLEID]*.cia CIA
 mv -k -n -o $[CIA] $[WORKINGPATH]/Original_Keyboard.cia
 
 # Decrypt the keyboard to patch it
-cp -w $[WORKINGPATH]/Original_Keyboard.cia $[WORKINGPATH]/Keyboard.cia
-decrypt $[WORKINGPATH]/Keyboard.cia
+cp -w $[WORKINGPATH]/Original_Keyboard.cia $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
+decrypt $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
 
-
-# Get the romfs file and patch it
-imgmount $[WORKINGPATH]/Keyboard.cia
-find G:/*.app APPFILE
-cp -w $[APPFILE] $[WORKINGPATH]/tmp.app
-imgumount
-
-imgmount $[WORKINGPATH]/tmp.app
-cp -w G:/romfs.bin $[WORKINGPATH]/romfs.bin
-imgumount
-rm -s $[WORKINGPATH]/tmp.app
 
 set ERRORMSG "The system seems very out of date. Make sure\nthe version is over 9.0 and try again."
-sha $[WORKINGPATH]/romfs.bin $[ROMFSHASH]
+sha $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia $[KYBHASH]
 
-set ERRORMSG "Something went wrong, do you\nhave the romfs-$[USINGREGION].bps file?"
-applybps $[WORKINGPATH]/romfs-$[USINGREGION].bps $[WORKINGPATH]/romfs.bin $[WORKINGPATH]/romfs-patched.bin
-rm -o -s $[WORKINGPATH]/romfs.bin
-echo "Patch applied successfully.\nYou will find the original keyboard, the keyboard\nto patch, and the patched romfs.bin in:\n$[WORKINGPATH]"
-echo "Now, you need to build it on your PC\nand encrypt it using this script after.\nDO NOT INSTALL IT YET or it will CRASH!\nSee you later!"
-poweroff
+set ERRORMSG "Something went wrong, do you\nhave the Patch$[USINGREGION].bps file?"
+applybps $[WORKINGPATH]/Patch$[USINGREGION].bps $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia
+rm -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
 
 
 
-# Encrypt Patched Keyboard
-@mainmenu_Encrypt_Patched_Keyboard
-if not find $[WORKINGPATH]/Keyboard_patched.cia NULL
-    echo "Patched Keyboard not found. It should be like this:\n$[WORKINGPATH]/Keyboard_patched.cia"
-end
+# Encrypt the patched keyboard
+encrypt $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia
+mv -k -n -o $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia $[WORKINGPATH]/Keyboard_patched.cia
 
 # It seems like gm9 doesn't install system apps with a script,
-# probably for security reasons or a bug.
+# probably for security reasons or a bug,
+# So I'll just print the instructions.
 
-# Clean up
-rm -o -s $[WORKINGPATH]/Keyboard.cia
-rm -o -s $[WORKINGPATH]/romfs-patched.bin
-echo "IMPORTANT: NEVER uninstall the CFW with the\ncustom keyboard installed or you will be\nsoftbricked! If you really want to uninstall it,\nrestore the original keyboard first."
-echo "Custom Keyboard prepared successfully!\nPress A to reboot, then install it from the\nfollowing path using FBI or godmode9 and enjoy!\n$[WORKINGPATH]/Keyboard_patched.cia"
+echo "IMPORTANT: NEVER uninstall the CFW with the\ncustom keyboard installed or you will be\nsoftbricked! If you really want to uninstall it,\nrestore the original keyboard first from here:\n(0 is the SD card)\n\n$[WORKINGPATH]/Original_Keyboard.cia"
+echo "Custom Keyboard prepared successfully!\nPress A to reboot, then install it from the\nfollowing path using FBI or godmode9 and enjoy!\n\n$[WORKINGPATH]/Keyboard_patched.cia"
+
+# cleanup and self destruct, you usually don't want this anymore
+rm -o -s $[WORKINGPATH]/PatchUSA.bps
+rm -o -s $[WORKINGPATH]/PatchEUR.bps
+rm -o -s "0:/gm9/scripts/Custom Keyboard.gm9"
+
 reboot
-
-
-
-# Restore Keyboard
-@mainmenu_Restore_Original_Keyboard
-if not find $[WORKINGPATH]/Original_Keyboard.cia NULL
-    echo "Backup not found. It should be like this:\n$[WORKINGPATH]/Original_Keyboard.cia"
-end
-
-# Gm9 will tell if it fails then exit
-
-if chk $[EMUFLAG] "t"
-    install -e $[WORKINGPATH]/Original_Keyboard.cia
-else
-    install $[WORKINGPATH]/Original_Keyboard.cia
-end
-
-echo "Original Keyboard restored successfully!"
 
 @exit
