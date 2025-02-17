@@ -31,15 +31,35 @@ Supported languages: All
 - Wait, **read** and accept the messages, which should reboot your 3ds if everything worked
 
 ### Install the custom keyboard
-- Go to FBI, SD card, gm9, customkyb, select "Keyboard_patched.cia" and "install CIA"
+- Go to FBI, SD card, gm9, customkyb, select "Keyboard_Patched.cia" and "install CIA"
 - Enjoy!
+
+#
+
+### Troubleshooting
+Q: I'm getting "The keyboard is not legit. [...]" error,
+
+A: Like the error says after, follow the uninstallation guide. You can also find and install the original keyboard cia on google, that works too.
+
+If you ask why this is important, this is because the original, untouched keyboard is required in order to patch it.
+
+#
+Q: I'm getting "The system seems very out of date" error,
+
+A: This happens if the dumped keyboard doesn't match the expected keyboard, as the keyboard should be legit, this can only mean that you're using a system firmware below 9.0, which is very old. (or I fucked up)
+
+#
+
+Q: I'm getting "do you have the Patch[region].bps file?" error, but I'm sure that I have it,
+
+A: Your sd card is probably dead and the files got corrupted, check your sd card for bad sectors.
 
 
 ## How to uninstall?
-- Go to FBI, SD card, gm9, customkyb, select "Keyboard_original.cia" and "install CIA"
+- Go to FBI, SD card, gm9, customkyb, select "Keyboard_Original.cia" and "install CIA"
 - Done!
 
-If you get a error, please follow these steps carefully:
+If you don't have this file, please follow these steps carefully:
 
 - FIRST METHOD: reinstalling with a system update.
    - Go to fbi, choose titles, wait for all titles to load, search for a red title named ```000400300000D002``` if you are EUR, or ```000400300000C802``` if you are USA.

@@ -84,14 +84,14 @@ rm -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
 
 # Encrypt the patched keyboard
 encrypt $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia
-mv -k -n -o $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia $[WORKINGPATH]/Keyboard_patched.cia
+mv -k -n -o $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia $[WORKINGPATH]/Keyboard_Patched.cia
 
 # It seems like gm9 doesn't install system apps with a script,
 # probably for security reasons or a bug,
 # So I'll just print the instructions.
 
 echo "IMPORTANT: NEVER uninstall the CFW with the\ncustom keyboard installed or you will be\nsoftbricked! If you really want to uninstall it,\nrestore the original keyboard first from here:\n(0 is the SD card)\n\n$[WORKINGPATH]/Keyboard_Original.cia"
-echo "Custom Keyboard prepared successfully!\nPress A to reboot, then install it from the\nfollowing path using FBI or godmode9 and enjoy!\n\n$[WORKINGPATH]/Keyboard_patched.cia"
+echo "Custom Keyboard prepared successfully!\nPress A to reboot, then install it from the\nfollowing path using FBI or godmode9 and enjoy!\n\n$[WORKINGPATH]/Keyboard_Patched.cia"
 
 # cleanup and self destruct, you usually don't want this anymore
 rm -o -s $[WORKINGPATH]/PatchUSA.bps
