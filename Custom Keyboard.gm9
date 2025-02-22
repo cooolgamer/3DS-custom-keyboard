@@ -4,7 +4,7 @@ if not find $[WORKINGPATH] NULL
   goto exit
 end
 
-# Cleanup
+# Cleanup & setup
 rm -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
 rm -o -s $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia
 
@@ -44,11 +44,11 @@ goto setvariables
 if chk $[USINGREGION] "USA"
     set KYBPATH "$[WORKINGDRIVE]/title/00040030/0000C802/content"
     set TITLEID "000400300000C802"
-    set KYBHASH "BCB4603DE9A25F5C1A1A4A5B9C78A18851456C0D9E76F9B4E430661FFBD25DDC"
+    set KYBHASH "FB1D03A4AB1C158DD9C07831B7951CBC924FECF6F5A222D8529D52086F741C66"
 elif chk $[USINGREGION] "EUR"
     set KYBPATH "$[WORKINGDRIVE]/title/00040030/0000D002/content"
     set TITLEID "000400300000D002"
-    set KYBHASH "CA522F1937BD1933CA4B071C74E1FB48319E2573DCB1058396E68BCEA008B07D"
+    set KYBHASH "D5CB139EA08BF1C08D9C91921DEA60DE35AFF62961B710F1104BD0BA88E869C1"
 else
     echo "Your region is not supported.\nOnly USA and EUR regions are supported."
     goto exit
@@ -58,21 +58,37 @@ end
 set ERRORMSG "Keyboard not found.\nMake sure you picked the right region.\nIf so, try to perform\na system update and try again."
 find $[KYBPATH]/*.tmd TMD
 
-# Build legit keyboard
+# Build legit keyboard, skip if og keyboard cia is already present for updating
 set ERRORMSG "The keyboard is not legit.\nDid you install a custom one already?\nIf so, restore it first.\nFollow the uninstallation guide\nif you don't have a backup."
+if find $[WORKINGPATH]/Keyboard_Original.cia NULL
+    set ERRORMSG ""
+    goto decrypt
+end
 buildcia -l $[TMD]
 
 set ERRORMSG ""
-
 # Rename the og keyboard dump
 find $[GM9OUT]/$[TITLEID]*.cia CIA
-mv -k -n -o $[CIA] $[WORKINGPATH]/Keyboard_Original.cia
+mv -n -o $[CIA] $[WORKINGPATH]/Keyboard_Original.cia
 
+@decrypt
 # Decrypt the keyboard to patch it
 cp -w $[WORKINGPATH]/Keyboard_Original.cia $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
 decrypt $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
 
+# The hash if different from different consoles, this will fix the different parts
+# Fill the signatures
+fill -n -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2A44:100 "FF"
+fill -n -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2BC0:3C "FF"
+fill -n -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2D10:80 "FF"
 
+# Set some specific different values, I legit don't know what they are for
+fill -n -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2C10:8 "00"
+fset $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2C26 "10"
+fset $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2C33 "01"
+fset $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2C61 "00"
+
+# Check the hash, so a different error message is shown before the bps hash check
 set ERRORMSG "The system seems very out of date. Make sure\nthe version is over 9.0 and try again."
 sha $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia $[KYBHASH]
 
@@ -81,10 +97,10 @@ applybps $[WORKINGPATH]/Patch$[USINGREGION].bps $[WORKINGPATH]/Dec-Keyboard-DO-N
 rm -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia
 
 
-
+set ERRORMSG ""
 # Encrypt the patched keyboard
 encrypt $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia
-mv -k -n -o $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia $[WORKINGPATH]/Keyboard_Patched.cia
+mv -w -n -o $[WORKINGPATH]/Patched-Keyboard-DO-NOT-INSTALL.cia $[WORKINGPATH]/Keyboard_Patched.cia
 
 # It seems like gm9 doesn't install system apps with a script,
 # probably for security reasons or a bug,
