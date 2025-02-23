@@ -41,7 +41,7 @@ Q: I'm getting "The keyboard is not legit. [...]" error,
 
 A: Like the error says after, follow the uninstallation guide. You can also find and install the original keyboard cia on google, that works too.
 
-If you ask why this is important, this is because the original, untouched keyboard is required in order to patch it.
+If you ask why this is important, this is because the original, unmodified keyboard is required in order to patch it.
 
 #
 Q: I'm getting "The system seems very out of date" error,
@@ -78,7 +78,7 @@ If you're getting an error:
 - Reinstalling with 3DNUS and godmode9 (Second method).
    - Take [this version of 3DNUS](https://github.com/DrHacknik/3DNUS/releases/tag/3.3_stable) and download the corresponding version for your PC.
    - Process to the setup: disable "enable auto update" and make sure "pack as cia" is enabled
-   - On "Title/Firmware", type the latest version and your region letter (ex: ```11.16.0-49E```) then press "Begin download" and wait.
+   - On "Title/Firmware", type the latest version and your region letter (ex: ```11.17.0-50E```) then press "Begin download" and wait.
    - KEYBOARD ONLY: Search for ```000400300000D002.cia``` if you are EUR, or ```000400300000C802.cia``` if you are USA and put this file anywhere on your sdcard.
    - ENTIRE FIRMWARE: Copy the folder containing all cias anywhere on your sdcard.
    - Open godmode9 on your console (hold start while booting and make sure it's updated up to v2.0.0 to support CIA installation).
@@ -90,9 +90,6 @@ If you're getting an error:
 
 ## Need help or info?
 You can contact me on my [Discord server](https://discord.gg/RxeZcgGRQB)
-
-## About 3dstool, ctrtool and makerom
-You will find in the "PC/bin" folder on the releases, 3 executables, these are older versions of [makerom and ctrtool](https://github.com/3DSGuy/Project_CTR/releases) and [3dstool](https://github.com/dnasdw/3dstool/releases) because the newer ones doesn't work properly.
 
 ## Credits:
 * [HMRT](https://github.com/schrmh/HMRT) (HomeMenu Rebuild Tool) which allowed me to easily extract and edit the cia
