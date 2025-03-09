@@ -84,12 +84,13 @@ fill -n -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2D10:80 "FF"
 
 # Set some specific different values, I legit don't know what they are for
 fill -n -o -s $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2C10:8 "00"
-fset $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2C26 "10"
+fset $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2C26 "1000"
 fset $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2C33 "01"
 fset $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia@2C61 "00"
 
-# Check the hash, so a different error message is shown before the bps hash check
-set ERRORMSG "The system seems very out of date. Make sure\nthe version is over 9.0 and try again."
+# Check the hash, Godmode9 does not check the bps hash
+# It's better to get a false positive than a broken keyboard
+set ERRORMSG "Your keyboard does not match the expected one.\nMake sure your firmware is over 9.0 and try again.\n\nIf this issue persists, contact me on discord\nor open a github issue."
 sha $[WORKINGPATH]/Dec-Keyboard-DO-NOT-INSTALL.cia $[KYBHASH]
 
 set ERRORMSG "Something went wrong, do you\nhave the Patch$[USINGREGION].bps file?"
