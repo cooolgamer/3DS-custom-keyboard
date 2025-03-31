@@ -35,6 +35,10 @@ goto setvariables
 set USINGREGION "EUR"
 goto setvariables
 
+@regionmenu_JPN
+set USINGREGION "JPN"
+goto setvariables
+
 @regionmenu_Other
 set USINGREGION "Other"
 goto setvariables
@@ -49,8 +53,12 @@ elif chk $[USINGREGION] "EUR"
     set KYBPATH "$[WORKINGDRIVE]/title/00040030/0000D002/content"
     set TITLEID "000400300000D002"
     set KYBHASH "74BDAC39EDDA4089E7A3D1ADDF3DC8F4744ED6D6D0577934230D5EAC1DB2C029"
+elif chk $[USINGREGION] "JPN"
+    set KYBPATH "$[WORKINGDRIVE]/title/00040030/0000C002/content"
+    set TITLEID "000400300000C002"
+    set KYBHASH "0024DAEA82AF4D8AA32BF0863FBF5E65515515CDCFC0FECA3EA6C927277FF27F"
 else
-    echo "Your region is not supported.\nOnly USA and EUR regions are supported."
+    echo "Your region is not supported.\nOnly JPN, USA and EUR regions are supported."
     goto exit
 end
 
@@ -113,6 +121,7 @@ echo "Custom Keyboard prepared successfully!\nPress A to reboot, then install it
 # cleanup and self destruct, you usually don't want this anymore
 rm -o -s $[WORKINGPATH]/PatchUSA.bps
 rm -o -s $[WORKINGPATH]/PatchEUR.bps
+rm -o -s $[WORKINGPATH]/PatchJPN.bps
 rm -o -s "0:/gm9/scripts/Custom Keyboard.gm9"
 
 reboot
