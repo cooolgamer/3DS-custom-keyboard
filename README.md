@@ -1,18 +1,25 @@
 # 3DS custom keyboard
 
 ## Support
-Supported models: All
-Supported regions: EUR/USA   
-Supported languages: All
+- Supported models: All
+- Supported regions: EUR/USA/JPN
+- Supported languages: All
 
 ## What's edited?
 * Custom symbols
-* Blue color
-* Replaced phone keyboard by Japanese keyboard
+* Dark theme
+* Replaced the phone keyboard by the Japanese keyboard
 * Changed the 4 buttons layout
 
 ## Screenshots:
-![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/qwerty.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/symbols.bmp) ![](https://github.com/cooolgamer/3DS-custom-keyboard/blob/main/screenshots/cell.bmp)
+
+![](./screenshots/qwerty-regular.bmp)
+![](./screenshots/jpn-kana.bmp)
+
+![](./screenshots/custom-symbols.bmp)
+![](./screenshots/extended-text-symbols.bmp)
+
+![](./screenshots/cell-jpn-kyb.bmp)
 
 ## WARNING: DO NOT uninstall your custom firmware.
 * The keyboard is not signed, meaning it doesn't work without CFW.
