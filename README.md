@@ -48,7 +48,7 @@ Q: I'm getting "The keyboard is not legit. [...]" error,
 
 A: Like the error says after, follow the uninstallation guide. You can also find and install the original keyboard cia on google, that works too.
 
-If you ask why this is important, this is because the original, untouched keyboard is required in order to patch it.
+If you ask why this is important, this is because the original, unmodified keyboard is required in order to patch it.
 
 #
 Q: I'm getting "The system seems very out of date" error,
@@ -63,43 +63,42 @@ A: Your sd card is probably dead and the files got corrupted, check your sd card
 
 
 ## How to uninstall?
+### First method: Using a Backup
 - Go to FBI, SD card, gm9, customkyb, select "Keyboard_Original.cia" and "install CIA"
 - Done!
 
-If you don't have this file, please follow these steps carefully:
+### Second method: Using a System Update
+If you don't have a backup, please follow these steps carefully:
 
-- FIRST METHOD: reinstalling with a system update.
-   - Go to fbi, choose titles, wait for all titles to load, search for a red title named ```000400300000D002``` if you are EUR, or ```000400300000C802``` if you are USA.
-   - Select this title and choose "delete title and ticket", this will delete it but don't worry, we are going to reinstall it.
-   - Power off your console and launch recovery mode by holding L + R + A + dpad UP buttons and press power with all those buttons held.
-   - Once you get a menu telling you to do a system update, say yes and accept everything.
-   - Wait for the update to complete and it's done!
+- Go to fbi, select titles, wait for all titles to load, search for a red title named ```000400300000D002``` if you are on EUR, or ```000400300000C802``` if you are on USA.
+- Select this title and choose "delete title and ticket", this will delete it but don't worry, we are going to reinstall it.
+- Power off your console and launch recovery mode by holding ``L`` + ``R`` + ``A`` + ``dpad UP`` buttons and press power with all those buttons held.
+- Once you get a menu telling you to perform a system update, press yes and accept everything.
+- Wait for the update to complete and it's done!
 
+### Third method: Using 3DNUS and Godmode9
 If you're getting an error:
 
-- SECOND METHOD: You have 2 choices, "KEYBOARD ONLY" and "ENTIRE FIRMWARE":
+- Here, you have 2 choices, "KEYBOARD ONLY" and "ENTIRE FIRMWARE":
    - Keyboard only is just reinstalling the clean keyboard to fix the keyboard,
    - Entire firmware is reinstalling the entire clean firmware  which is strongly recommended if you plan removing CFW.
-   - The steps not having "KEYBOARD ONLY" or "ENTIRE FIRMWARE" are for both methods, follow them.
+   - The steps not mentioning "KEYBOARD ONLY" or "ENTIRE FIRMWARE" are for both methods, follow them.
 
-- Reinstalling with 3DNUS and godmode9 (Second method).
-   - Take [this version of 3DNUS](https://github.com/DrHacknik/3DNUS/releases/tag/3.3_stable) and download the corresponding version for your PC.
-   - Process to the setup: disable "enable auto update" and make sure "pack as cia" is enabled
-   - On "Title/Firmware", type the latest version and your region letter (ex: ```11.16.0-49E```) then press "Begin download" and wait.
-   - KEYBOARD ONLY: Search for ```000400300000D002.cia``` if you are EUR, or ```000400300000C802.cia``` if you are USA and put this file anywhere on your sdcard.
-   - ENTIRE FIRMWARE: Copy the folder containing all cias anywhere on your sdcard.
-   - Open godmode9 on your console (hold start while booting and make sure it's updated up to v2.0.0 to support CIA installation).
-   - KEYBOARD ONLY: Navigate to SDCARD where you put the cia and select it.
-   - ENTIRE FIRMWARE: Navigate to SDCARD where you put the folder and select all cias inside with L + Dpad Right and select any of them.
-   - Choose ```CIA image options``` and ```Install game image``` then confirm.
-   - After waiting, press A, then start to reboot and it's done!
-   - You can now delete 3DNUS and the cia(s) you copied on your sdcard.
+###
+- Get [this version of 3DNUS](https://github.com/DrHacknik/3DNUS/releases/tag/3.3_stable) and download the corresponding version for your PC.
+- Process to the setup: disable "enable auto update" and make sure "pack as cia" is enabled
+- On "Title/Firmware", type the latest version and your region letter (ex: ```11.17.0-50E```) then press "Begin download" and wait.
+- KEYBOARD ONLY: Search for ```000400300000D002.cia``` if you are EUR, or ```000400300000C802.cia``` if you are USA and put this file anywhere on your sd card.
+- ENTIRE FIRMWARE: Copy the folder containing all cias anywhere on your sd card.
+- Open godmode9 on your console (hold start while booting and make sure it's updated up to v2.0.0 to support CIA installation).
+- KEYBOARD ONLY: Navigate to SDCARD where you put the cia and select it.
+- ENTIRE FIRMWARE: Navigate to SDCARD where you put the folder and select all cias inside with ``L`` + ``Dpad Right`` and select any of them.
+- Choose ```CIA image options``` and ```Install game image``` then confirm.
+- After waiting, press A, then start to reboot and it's done!
+- You can now delete 3DNUS and the cia(s) you copied on your sd card.
 
 ## Need help or info?
 You can contact me on my [Discord server](https://discord.gg/RxeZcgGRQB)
-
-## About 3dstool, ctrtool and makerom
-You will find in the "PC/bin" folder on the releases, 3 executables, these are older versions of [makerom and ctrtool](https://github.com/3DSGuy/Project_CTR/releases) and [3dstool](https://github.com/dnasdw/3dstool/releases) because the newer ones doesn't work properly.
 
 ## Credits:
 * [HMRT](https://github.com/schrmh/HMRT) (HomeMenu Rebuild Tool) which allowed me to easily extract and edit the cia
