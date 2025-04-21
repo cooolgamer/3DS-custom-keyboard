@@ -7,19 +7,22 @@
 
 ## What's edited?
 * Custom symbols
-* Dark theme
-* Replaced the phone keyboard by the Japanese keyboard
-* Changed the 4 buttons layout
+* Themes (Dark/Light)
+* Replaced the phone keyboard with kanas (Japanese letters) keyboard
+* Added a 5th button and arranged the layout for the fullwidth font (that looks like the Wii font) keyboard
+  * Because of the way it works, this is not available on the Russian language, this keyboard is moved in the custom symbols section for this language
+  * Thanks to [@ZeroSkill](https://github.com/ZeroSkill1) for patching the code for that
 
 ## Screenshots:
 
 ![](./screenshots/qwerty-regular.bmp)
-![](./screenshots/jpn-kana.bmp)
+![](./screenshots/qwerty-fullwidth.bmp)
 
-![](./screenshots/custom-symbols.bmp)
 ![](./screenshots/extended-text-symbols.bmp)
+![](./screenshots/custom-symbols.bmp)
 
-![](./screenshots/cell-jpn-kyb.bmp)
+![](./screenshots/jpn-kana.bmp)
+![](./screenshots/cell-kanas.bmp)
 
 ## WARNING: DO NOT uninstall your custom firmware.
 * The keyboard is not signed, meaning it doesn't work without CFW.
@@ -51,15 +54,16 @@ A: Like the error says after, follow the uninstallation guide. You can also find
 If you ask why this is important, this is because the original, unmodified keyboard is required in order to patch it.
 
 #
-Q: I'm getting "The system seems very out of date" error,
+Q: I'm getting "Your keyboard does not match the expected one." error,
 
-A: This happens if the dumped keyboard doesn't match the expected keyboard, as the keyboard should be legit, this can only mean that you're using a system firmware below 9.0, which is very old. (or I fucked up)
+A: This happens if the dumped keyboard doesn't match the expected keyboard, as the keyboard should be legit, this can mean that either you're using a system firmware below 9.0, which is very old, or you selected the wrong region.
+If this isn't the case, this shouldn't happen, try to contact me on github or discord.
 
 #
 
 Q: I'm getting "do you have the Patch[region].bps file?" error, but I'm sure that I have it,
 
-A: Your sd card is probably dead and the files got corrupted, check your sd card for bad sectors.
+A: Make sure you *actually* copied the files correctly (their file size shouldn't be 0 byte), or your sd card is probably dead and the files got corrupted, check your sd card for bad sectors.
 
 
 ## How to uninstall?
@@ -70,7 +74,10 @@ A: Your sd card is probably dead and the files got corrupted, check your sd card
 ### Second method: Using a System Update
 If you don't have a backup, please follow these steps carefully:
 
-- Go to fbi, select titles, wait for all titles to load, search for a red title named ```000400300000D002``` if you are on EUR, or ```000400300000C802``` if you are on USA.
+- Go to fbi, select titles, wait for all titles to load, search for a red title named corresponding to your region:
+  - ```000400300000D002``` on EUR
+  - ```000400300000C802``` on USA
+  - ```000400300000C002``` on JPN
 - Select this title and choose "delete title and ticket", this will delete it but don't worry, we are going to reinstall it.
 - Power off your console and launch recovery mode by holding ``L`` + ``R`` + ``A`` + ``dpad UP`` buttons and press power with all those buttons held.
 - Once you get a menu telling you to perform a system update, press yes and accept everything.
@@ -88,7 +95,10 @@ If you're getting an error:
 - Get [this version of 3DNUS](https://github.com/DrHacknik/3DNUS/releases/tag/3.3_stable) and download the corresponding version for your PC.
 - Process to the setup: disable "enable auto update" and make sure "pack as cia" is enabled
 - On "Title/Firmware", type the latest version and your region letter (ex: ```11.17.0-50E```) then press "Begin download" and wait.
-- KEYBOARD ONLY: Search for ```000400300000D002.cia``` if you are EUR, or ```000400300000C802.cia``` if you are USA and put this file anywhere on your sd card.
+- KEYBOARD ONLY: Put the following file corresponding to your region anywhere on your SD card:
+  - ```000400300000D002.cia``` on EUR
+  - ```000400300000C802.cia``` on USA
+  - ```000400300000C002.cia``` on JPN
 - ENTIRE FIRMWARE: Copy the folder containing all cias anywhere on your sd card.
 - Open godmode9 on your console (hold start while booting and make sure it's updated up to v2.0.0 to support CIA installation).
 - KEYBOARD ONLY: Navigate to SDCARD where you put the cia and select it.
@@ -103,4 +113,5 @@ You can contact me on my [Discord server](https://discord.gg/RxeZcgGRQB)
 ## Credits:
 * [HMRT](https://github.com/schrmh/HMRT) (HomeMenu Rebuild Tool) which allowed me to easily extract and edit the cia
 * [ctrtool, makerom](https://github.com/3DSGuy/Project_CTR/) and [3dstool](https://github.com/dnasdw/3dstool/) developers
-* Thanks to Zukkunda for inspiring me of the blue color!
+* [@ZeroSkill](https://github.com/ZeroSkill1) for the russian Keyboard in all languages allowing more custom slots!
+* Thanks to Zukkunda for inspiring me of the blue color (before v4)!
