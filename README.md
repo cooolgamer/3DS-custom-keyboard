@@ -114,4 +114,3 @@ You can contact me on my [Discord server](https://discord.gg/RxeZcgGRQB)
 * [HMRT](https://github.com/schrmh/HMRT) (HomeMenu Rebuild Tool) which allowed me to easily extract and edit the cia
 * [ctrtool, makerom](https://github.com/3DSGuy/Project_CTR/) and [3dstool](https://github.com/dnasdw/3dstool/) developers
 * [@ZeroSkill](https://github.com/ZeroSkill1) for the russian Keyboard in all languages allowing more custom slots!
-* Thanks to Zukkunda for inspiring me of the blue color (before v4)!
